@@ -3,38 +3,9 @@
     <div>
       <Logo />
       <h1 class="title">remote-hub</h1>
-      <div v-for="(item, index) in lists" :key="index">
-        <h2>{{ item.name }}</h2>
-      </div>
     </div>
   </div>
 </template>
-
-<script>
-import gql from 'graphql-tag'
-export const lists = gql`
-  query {
-    lists {
-      id
-      name
-    }
-  }
-`
-
-export default {
-  data() {
-    return {
-      lists: [],
-    }
-  },
-  apollo: {
-    $loadingKey: 'loading',
-    lists: {
-      query: lists,
-    },
-  },
-}
-</script>
 
 <style>
 /* Sample `apply` at-rules with Tailwind CSS
