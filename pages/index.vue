@@ -2,33 +2,38 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">
-        remote-hub
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+      <h1 class="title">remote-hub</h1>
+      <div v-for="(item, index) in lists" :key="index">
+        <h2>{{ item.name }}</h2>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import gql from 'graphql-tag'
+export const lists = gql`
+  query {
+    lists {
+      id
+      name
+    }
+  }
+`
+
+export default {
+  data() {
+    return {
+      lists: [],
+    }
+  },
+  apollo: {
+    $loadingKey: 'loading',
+    lists: {
+      query: lists,
+    },
+  },
+}
 </script>
 
 <style>
@@ -47,16 +52,8 @@ export default {}
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
