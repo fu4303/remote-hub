@@ -13,3 +13,19 @@ export const CreateTodo = gql`
     }
   }
 `
+
+export const ToggleTodoCompleted = gql`
+  mutation($id: Int!, $isCompleted: Boolean!) {
+    update_todos(
+      where: { id: { _eq: $id } }
+      _set: { isCompleted: $isCompleted }
+    ) {
+      returning {
+        id
+        isCompleted
+        list_id
+        name
+      }
+    }
+  }
+`
