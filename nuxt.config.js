@@ -42,7 +42,7 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://134.209.25.52/v1/graphql',
+        httpEndpoint: 'https://remote-hub.hasura.app/v1/graphql',
       },
     },
   },

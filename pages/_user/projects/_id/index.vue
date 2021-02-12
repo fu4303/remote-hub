@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Project Name</h1>
-    <NuxtLink to="444/todos">
+    <NuxtLink :to="`${$route.params.id}/todos`">
       <article>
         <h3>Todo's</h3>
       </article>

@@ -1,7 +1,16 @@
 import gql from 'graphql-tag'
 
+export const CreateList = gql`
+  mutation($name: String!) {
+    insert_lists_one(object: { name: $name }) {
+      id
+      name
+    }
+  }
+`
+
 export const CreateTodo = gql`
-  mutation($name: String!, $list_id: Int!) {
+  mutation($name: String!, $list_id: uuid!) {
     insert_todos(
       objects: { name: $name, list_id: $list_id, isCompleted: false }
     ) {
@@ -15,7 +24,7 @@ export const CreateTodo = gql`
 `
 
 export const ToggleTodoCompleted = gql`
-  mutation($id: Int!, $isCompleted: Boolean!) {
+  mutation($id: uuid!, $isCompleted: Boolean!) {
     update_todos(
       where: { id: { _eq: $id } }
       _set: { isCompleted: $isCompleted }
