@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import AddTodo from '@/components/todos/AddTodo'
 import { lists } from '@/graphql/todos/queries'
 import { ToggleTodoCompleted } from '@/graphql/todos/mutations'
 import {
@@ -57,7 +56,6 @@ import draggable from 'vuedraggable'
 
 export default {
   components: {
-    AddTodo,
     draggable,
   },
   data() {
