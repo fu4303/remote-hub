@@ -2,9 +2,10 @@ import gql from 'graphql-tag'
 
 export const lists = gql`
   query {
-    lists {
+    lists(order_by: { order: asc }) {
       id
       name
+      order
       todosByListId {
         name
         id

@@ -1,7 +1,12 @@
 <template>
   <div>
     <input type="text" v-model="newTodo.name" placeholder="Todo name" />
-    <button v-on:click="addTodo">Add Todo</button>
+    <button
+      v-on:click="addTodo"
+      class="border-2 border-green-300 rounded-full px-5"
+    >
+      Add Todo
+    </button>
   </div>
 </template>
 

@@ -29,3 +29,30 @@ export const ToggleTodoCompleted = gql`
     }
   }
 `
+
+export const UpdateFirstListOrder = gql`
+  mutation($id: Int!, $newIndex: Int!) {
+    update_lists(where: { id: { _eq: $id } }, _set: { order: $newIndex }) {
+      returning {
+        id
+        name
+        order
+      }
+    }
+  }
+`
+
+export const UpdateSecondListOrder = gql`
+  mutation($oldIndex: Int!, $newIndex: Int!) {
+    update_lists(
+      where: { order: { _eq: $newIndex } }
+      _set: { order: $oldIndex }
+    ) {
+      returning {
+        id
+        name
+        order
+      }
+    }
+  }
+`
