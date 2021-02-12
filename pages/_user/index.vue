@@ -5,12 +5,10 @@
     <hr />
     <AddProject />
     <div v-for="project in projects" :key="project.id">
-      <NuxtLink :to="`${$route.path}/projects/${project.id}`">
-        <article class="">
-          <h3 class="w-40 border-2 border-purple-400 rounded-lg my-4 p-4">
-            {{ project.name }}
-          </h3>
-        </article>
+      <NuxtLink :to="`/${$route.params.user}/projects/${project.id}`">
+        <h3 class="w-40 border-2 border-purple-400 rounded-lg my-4 p-4">
+          {{ project.name }}
+        </h3>
       </NuxtLink>
     </div>
   </div>
