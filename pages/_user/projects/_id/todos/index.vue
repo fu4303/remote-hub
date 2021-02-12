@@ -2,6 +2,7 @@
   <div>
     <h1>Project Name</h1>
     <h3>Todo's:</h3>
+
     <AddList />
     <hr />
     <draggable
@@ -11,37 +12,25 @@
       @end="drag = false"
       @change="moved"
     >
-      <div v-for="list in lists" :key="list.id">
-        <h2 class="pt-6">{{ list.name }}</h2>
-        <hr />
-        <AddTodo :list_id="list.id" />
-        <div v-for="todo in list.todosByListId" :key="todo.id">
-          <input
-            type="checkbox"
-            :checked="todo.isCompleted"
-            @change="toggleTodoCompleted(todo.id, !todo.isCompleted)"
-          />
-          <span>{{ todo.name }}</span>
+      <div v-if="lists.length > 0">
+        <div v-for="list in lists" :key="list.id">
+          <h2 class="pt-6">{{ list.name }}</h2>
+          <hr />
+          <AddTodo :list_id="list.id" />
+          <div v-for="todo in list.todosByListId" :key="todo.id">
+            <input
+              type="checkbox"
+              :checked="todo.isCompleted"
+              @change="toggleTodoCompleted(todo.id, !todo.isCompleted)"
+            />
+            <span>{{ todo.name }}</span>
+          </div>
         </div>
+      </div>
+      <div v-else>
+        <p>No lists to show, yet...</p>
       </div>
     </draggable>
-
-    <!-- <article>
-      <h3>Todo's:</h3>
-      <div v-for="list in lists" :key="list.id">
-        <h2 class="pt-6">{{ list.name }}</h2>
-        <hr />
-        <AddTodo :list_id="list.id" />
-        <div v-for="todo in list.todosByListId" :key="todo.id">
-          <input
-            type="checkbox"
-            :checked="todo.isCompleted"
-            @change="toggleTodoCompleted(todo.id, !todo.isCompleted)"
-          />
-          <span>{{ todo.name }}</span>
-        </div>
-      </div>
-    </article> -->
   </div>
 </template>
 
@@ -62,6 +51,17 @@ export default {
     return {
       lists: [],
     }
+  },
+  apollo: {
+    lists: {
+      query: lists,
+      loadingKey: 'loading',
+      variables() {
+        return {
+          id: this.$route.params.id,
+        }
+      },
+    },
   },
   methods: {
     async moved(e) {
@@ -99,12 +99,6 @@ export default {
       } catch (error) {
         throw new Error(error)
       }
-    },
-  },
-  apollo: {
-    $loadingKey: 'loading',
-    lists: {
-      query: lists,
     },
   },
 }

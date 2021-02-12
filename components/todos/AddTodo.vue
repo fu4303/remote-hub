@@ -15,7 +15,7 @@ import { CreateTodo } from '@/graphql/todos/mutations'
 
 export default {
   props: {
-    list_id: Number,
+    list_id: String,
   },
   data() {
     return {

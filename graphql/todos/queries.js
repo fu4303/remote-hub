@@ -1,15 +1,16 @@
 import gql from 'graphql-tag'
 
 export const lists = gql`
-  query {
-    lists(order_by: { order: asc }) {
+  query($id: uuid!) {
+    lists(where: { project_id: { _eq: $id } }, order_by: { order: asc }) {
       id
       name
       order
+      project_id
       todosByListId {
-        name
         id
         isCompleted
+        name
       }
     }
   }

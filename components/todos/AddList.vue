@@ -14,25 +14,24 @@
 import { CreateList } from '@/graphql/todos/mutations'
 
 export default {
-  // props: {
-  //   list_id: Number,
-  // },
   data() {
     return {
       newList: {
         name: '',
+        project_id: this.$route.params.id,
       },
     }
   },
   methods: {
     async addList() {
       try {
-        const { name } = this.newList
-        if (!name) return
+        const { name, project_id } = this.newList
+        if (!name || !project_id) return
         await this.$apollo.mutate({
           mutation: CreateList,
           variables: {
             name,
+            project_id,
           },
         })
         this.newList = {}

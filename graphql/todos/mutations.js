@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const CreateList = gql`
-  mutation($name: String!) {
-    insert_lists_one(object: { name: $name }) {
+  mutation($name: String!, $project_id: uuid!) {
+    insert_lists_one(object: { name: $name, project_id: $project_id }) {
       id
       name
     }
