@@ -35,6 +35,7 @@ export default {
             name,
           },
         })
+        this.newProject = {}
       } catch (error) {
         throw new Error(error)
       }

@@ -37,6 +37,7 @@ export default {
             list_id,
           },
         })
+        this.newTodo = {}
       } catch (error) {
         throw new Error(error)
       }

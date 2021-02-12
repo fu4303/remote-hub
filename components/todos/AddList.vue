@@ -35,6 +35,7 @@ export default {
             name,
           },
         })
+        this.newList = {}
       } catch (error) {
         throw new Error(error)
       }

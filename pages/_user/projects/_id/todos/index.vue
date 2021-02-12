@@ -3,7 +3,7 @@
     <h1>Project Name</h1>
     <h3>Todo's:</h3>
     <AddList />
-
+    <hr />
     <draggable
       v-model="lists"
       group="people"
