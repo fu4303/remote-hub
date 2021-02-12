@@ -66,6 +66,7 @@ export default {
   methods: {
     async moved(e) {
       try {
+        const { id } = e.moved.element
         await this.$apollo.mutate({
           mutation: UpdateSecondListOrder,
           variables: {
