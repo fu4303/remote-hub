@@ -1,5 +1,21 @@
 import gql from 'graphql-tag'
 
+export const UpdateTodo = gql`
+  mutation($id: uuid!, $name: String!, $isCompleted: Boolean!) {
+    update_todos(
+      where: { id: { _eq: $id } }
+      _set: { name: $name, isCompleted: $isCompleted }
+    ) {
+      returning {
+        id
+        name
+        isCompleted
+        list_id
+      }
+    }
+  }
+`
+
 export const CreateList = gql`
   mutation($name: String!, $project_id: uuid!) {
     insert_lists_one(object: { name: $name, project_id: $project_id }) {

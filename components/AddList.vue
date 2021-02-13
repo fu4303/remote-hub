@@ -2,7 +2,7 @@
   <div>
     <input type="text" v-model="newList.name" placeholder="List name" />
     <button
-      v-on:click="addList"
+      @click="addList"
       class="border-2 border-purple-300 rounded-full px-5"
     >
       Add List

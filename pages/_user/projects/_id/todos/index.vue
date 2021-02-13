@@ -23,7 +23,9 @@
               :checked="todo.isCompleted"
               @change="toggleTodoCompleted(todo.id, !todo.isCompleted)"
             />
-            <span>{{ todo.name }}</span>
+            <span @click=";(todoModalOpen = true), (activeTodo = todo)">{{
+              todo.name
+            }}</span>
           </div>
         </div>
       </div>
@@ -31,6 +33,7 @@
         <p>No lists to show, yet...</p>
       </div>
     </draggable>
+    <TodoModal v-show="todoModalOpen" :todo="activeTodo" />
   </div>
 </template>
 
@@ -49,6 +52,8 @@ export default {
   },
   data() {
     return {
+      activeTodo: {},
+      todoModalOpen: false,
       lists: [],
     }
   },
@@ -64,6 +69,9 @@ export default {
     },
   },
   methods: {
+    openTodoModal(selectedTodo) {
+      this.todoModalOpen = true
+    },
     async moved(e) {
       try {
         const { id } = e.moved.element
