@@ -14,7 +14,8 @@
     >
       Save changes
     </button>
-
+    <hr />
+    <AddComment :todo_id="todo.id" />
     <section>
       <h3 class="text-xl mb-4 border-b">Comments</h3>
       <table v-for="comment in comments" :key="comment.id">

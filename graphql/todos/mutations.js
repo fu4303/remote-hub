@@ -16,6 +16,28 @@ export const UpdateTodo = gql`
   }
 `
 
+export const CreateComment = gql`
+  mutation($by_user: uuid!, $belongs_to: uuid!, $comment_body: String!) {
+    insert_comments_one(
+      object: {
+        by_user: $by_user
+        belongs_to: $belongs_to
+        comment_body: $comment_body
+      }
+    ) {
+      id
+      created_at
+      user {
+        email
+        name
+      }
+      todo {
+        name
+      }
+    }
+  }
+`
+
 export const CreateList = gql`
   mutation($name: String!, $project_id: uuid!) {
     insert_lists_one(object: { name: $name, project_id: $project_id }) {
