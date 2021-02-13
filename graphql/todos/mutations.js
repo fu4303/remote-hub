@@ -3,6 +3,9 @@ import gql from 'graphql-tag'
 export const DeleteTodo = gql`
   mutation($id: uuid!) {
     delete_todos(where: { id: { _eq: $id } }) {
+      affected_rows
+    }
+    delete_comments(where: { belongs_to: { _eq: $id } }) {
       returning {
         id
       }
