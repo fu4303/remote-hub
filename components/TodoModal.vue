@@ -1,6 +1,10 @@
 <template>
   <div class="bg-purple-300 p-12">
-    <p>todo modal</p>
+    <span
+      @click="$emit('close-modal')"
+      class="text-red-800 border border-red-800 p-2 rounded cursor-pointer"
+      >x</span
+    >
     <input
       type="checkbox"
       :checked="todoEdited.isCompleted"

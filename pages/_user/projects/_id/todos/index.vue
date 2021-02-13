@@ -33,7 +33,11 @@
         <p>No lists to show, yet...</p>
       </div>
     </draggable>
-    <TodoModal v-show="todoModalOpen" :todo="activeTodo" />
+    <TodoModal
+      v-show="todoModalOpen"
+      :todo="activeTodo"
+      @close-modal="todoModalOpen = false"
+    />
   </div>
 </template>
 
