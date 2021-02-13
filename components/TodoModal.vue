@@ -14,11 +14,22 @@
     >
       Save changes
     </button>
+
+    <section>
+      <h3 class="text-xl mb-4 border-b">Comments</h3>
+      <table v-for="comment in comments" :key="comment.id">
+        <tr>
+          <td>{{ comment.comment_body }}</td>
+          <td>by: {{ comment.user.name }}</td>
+        </tr>
+      </table>
+    </section>
   </div>
 </template>
 
 <script>
 import { UpdateTodo } from '@/graphql/todos/mutations'
+import { comments } from '@/graphql/todos/queries'
 
 export default {
   props: ['todo'],
@@ -26,6 +37,22 @@ export default {
     return {
       todoEdited: {},
     }
+  },
+  apollo: {
+    comments: {
+      query: comments,
+      loadingKey: 'loading',
+      variables() {
+        return {
+          id: this.todoEdited.id,
+        }
+      },
+      // Disable the query on load since id variable is not ready,
+      // re enabled with watcher below
+      skip() {
+        return this.skipQuery
+      },
+    },
   },
   methods: {
     async updateTodo() {
@@ -50,6 +77,8 @@ export default {
     todo() {
       // take copy of initial props
       this.todoEdited = { ...this.todo }
+      // re enable apollo query to fetch comments
+      this.$apollo.queries.comments.skip = false
     },
   },
 }
