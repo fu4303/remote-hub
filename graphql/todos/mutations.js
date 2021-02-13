@@ -1,5 +1,15 @@
 import gql from 'graphql-tag'
 
+export const DeleteTodo = gql`
+  mutation($id: uuid!) {
+    delete_todos(where: { id: { _eq: $id } }) {
+      returning {
+        id
+      }
+    }
+  }
+`
+
 export const UpdateTodo = gql`
   mutation($id: uuid!, $name: String!, $isCompleted: Boolean!) {
     update_todos(

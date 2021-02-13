@@ -29,11 +29,17 @@
         </tr>
       </table>
     </section>
+    <button
+      @click="deleteTodo"
+      class="border-2 border-red-300 rounded-full px-5"
+    >
+      delete
+    </button>
   </div>
 </template>
 
 <script>
-import { UpdateTodo } from '@/graphql/todos/mutations'
+import { UpdateTodo, DeleteTodo } from '@/graphql/todos/mutations'
 import { comments } from '@/graphql/todos/queries'
 
 export default {
@@ -73,6 +79,21 @@ export default {
           },
         })
         this.newList = {}
+      } catch (error) {
+        throw new Error(error)
+      }
+    },
+    async deleteTodo() {
+      try {
+        const { id } = this.todoEdited
+        if (!id) return
+        await this.$apollo.mutate({
+          mutation: DeleteTodo,
+          variables: {
+            id,
+          },
+        })
+        this.$emit('close-modal')
       } catch (error) {
         throw new Error(error)
       }
