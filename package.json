@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.12.16",
     "@nuxtjs/apollo": "^4.0.1-rc.5",
     "core-js": "^3.8.3",
     "graphql-tag": "^2.11.0",
