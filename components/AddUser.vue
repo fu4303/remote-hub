@@ -33,6 +33,7 @@ export default {
           variables: {
             name,
             email,
+            accounts: '3d930dbc-4af6-40f4-996b-6fab9ecd6c4c',
           },
         })
         this.newUser = {}
