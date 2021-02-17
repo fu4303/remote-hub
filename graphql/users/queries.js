@@ -19,13 +19,13 @@ export const getAccountUsers = gql`
   }
 `
 
-export const users = gql`
-  query {
-    users {
-      email
-      id
-      name
-      projects
-    }
-  }
-`
+// export const users = gql`
+//   query {
+//     users {
+//       email
+//       id
+//       name
+//       projects
+//     }
+//   }
+// `

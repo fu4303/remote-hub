@@ -9,3 +9,14 @@ export const projects = gql`
     }
   }
 `
+
+export const getProject = gql`
+  query($id: uuid!) {
+    projects(where: { id: { _eq: $id } }) {
+      id
+      name
+      description
+      team_members
+    }
+  }
+`
